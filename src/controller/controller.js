@@ -70,10 +70,10 @@ exports.fetchSingleReminder = async (req, res, next) => {
 
 exports.updateReminder = async (req, res, next) => {
   try {
-    // const { _id } = req.query;
-    // const updateReminder = await Reminder.findOneAndUpdate({ _id }, req.body);
+    const { _id } = req.query;
+     const updateReminder = await Reminder.findOneAndUpdate({ _id }, req.body);
     return res.status(405).json({
-      // updateReminder,
+      updateReminder,
       message :"deleting a reminder is allowed"
     });
   } catch (error) {
@@ -88,8 +88,8 @@ exports.updateReminder = async (req, res, next) => {
 
 exports.deleteReminder = async (req, res, next) => {
   try {
-    // const { _id } = req.params;
-    // const removeReminder = await Reminder.findOneAndDelete({ _id });
+ const { _id } = req.params;
+  const removeReminder = await Reminder.findOneAndDelete({ _id });
     return res.status(405).json({
       message: "deleting a reminder is allowed",
     });
