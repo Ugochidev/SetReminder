@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 require("dotenv").config()
+
+
 const reminderRouter = require("../src/route/reminder.route");
 app.use("/api/v1", reminderRouter)
 const PORT = process.env.PORT;
