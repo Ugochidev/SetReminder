@@ -43,17 +43,16 @@ exports.fetchReminder = async (req, res, next) => {
   }
 };
 
-
 // getting one reminder
 
 exports.fetchSingleReminder = async (req, res, next) => {
   try {
     const { _id } = req.query;
     const singleReminder = await Reminder.findOne({_id});
-   if (!_id) {
-    return res.status(404).json({
-    message: "ID not found",
-    });
+    if (!singleReminder) {
+      return res.status(404).json({
+        message: "ID not found",
+      });
     }
     return res.status(200).json({
       singleReminder,
@@ -65,16 +64,15 @@ exports.fetchSingleReminder = async (req, res, next) => {
   }
 };
 
-
 // Updating a reminder
 
 exports.updateReminder = async (req, res, next) => {
   try {
     const { _id } = req.query;
-     const updateReminder = await Reminder.findOneAndUpdate({ _id }, req.body);
-    return res.status(405).json({
+    const updateReminder = await Reminder.findOneAndUpdate({ _id }, req.body);
+    return res.status(200).json({
+      message: "Reminder updated successfully",
       updateReminder,
-      message :"deleting a reminder is allowed"
     });
   } catch (error) {
     return res.status(500).json({
@@ -83,15 +81,14 @@ exports.updateReminder = async (req, res, next) => {
   }
 };
 
-
 // deleting a reminder
 
 exports.deleteReminder = async (req, res, next) => {
   try {
- const { _id } = req.params;
-  const removeReminder = await Reminder.findOneAndDelete({ _id });
-    return res.status(405).json({
-      message: "deleting a reminder is allowed",
+    const { _id } = req.params;
+    const removeReminder = await Reminder.findOneAndDelete({ _id });
+    return res.status(200).json({
+      message: "deleted successfully",
     });
   } catch (error) {
     return res.status(500).json({
